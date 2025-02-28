@@ -11,21 +11,32 @@ enum OperationStatus {
   ERROR = 1;
 }
 
+message MediaDetails {
+  string contentType = 1;
+  string clientId = 2;
+}
 
 message MediaHeaders {
   bool hlsStatus = 1;
-  uint64 contentLength = 2;
   string contentType = 3;
-  string apiKey=4;
+  string clientSecret = 4;
 }
 message MediaUploadRequest {
   bytes file = 1;
 }
 
 message MediaUploadResponse {
-  optional string fileName = 1;
-  OperationStatus status = 2;
-  optional string errorMessage = 3;
+  optional MediaObjectDetails mediaObjectDetails = 1;
+  OperationStatus status = 3;
+  optional string errorMessage = 4;
+}
+
+message MediaObjectDetails{
+  string fileId = 1;
+  string accessUrl = 2;
+  uint64 fileSize = 3;
+  string createdOn = 4;
+  string contentType = 5;
 }
 
 message EmptyResponse{
