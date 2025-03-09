@@ -2,16 +2,14 @@ package com.cromxt.common.crombucket.grpc;
 
 
 import com.cromxt.proto.files.AuthKey;
-import com.cromxt.proto.files.MediaDetails;
-import com.cromxt.proto.files.MediaHeaders;
+import com.cromxt.proto.files.FileMetadata;
 import io.grpc.Context;
 import io.grpc.Metadata;
 import lombok.Getter;
 
 public class MediaHeadersKey {
 
-    public static final HeaderKeyValue<MediaHeaders> MEDIA_META_DATA = new HeaderKeyValue<>("media-metadata", HeaderType.BINARY);
-    public static final HeaderKeyValue<MediaDetails> MEDIA_DETAILS = new HeaderKeyValue<>("media-details", HeaderType.BINARY);
+    public static final HeaderKeyValue<FileMetadata>  FILE_METADATA = new HeaderKeyValue<>("media-metadata", HeaderType.BINARY);
     public static final HeaderKeyValue<AuthKey> AUTH_KEY = new HeaderKeyValue<>("auth-key", HeaderType.BINARY);
 
     /*

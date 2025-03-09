@@ -11,22 +11,18 @@ enum OperationStatus {
   ERROR = 1;
 }
 
-message MediaDetails {
-  string extension = 1;
-  string clientId = 2;
-  Visibility visibility = 3;
-}
-
 enum Visibility {
   PRIVATE = 0;
   PUBLIC = 1;
   PROTECTED = 2;
 }
-message MediaHeaders {
+message FileMetadata {
   string extension = 1;
-  string clientSecret = 2;
-  Visibility visibility = 3;
+  Visibility visibility = 2;
+  optional string clientSecret = 3;
+  optional string clientId = 4;
 }
+
 message FileUploadRequest {
   bytes file = 1;
 }
@@ -41,8 +37,7 @@ message MediaObjectDetails{
   string mediaId = 1;
   string accessUrl = 3;
   uint64 fileSize = 4;
-  string createdOn = 5;
-  Visibility visibility = 6;
+  Visibility visibility = 5;
 }
 
 service FileHandlerService {
