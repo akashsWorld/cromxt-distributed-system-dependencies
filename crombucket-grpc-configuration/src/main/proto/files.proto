@@ -12,16 +12,22 @@ enum OperationStatus {
 }
 
 message MediaDetails {
-  string contentType = 1;
+  string extension = 1;
   string clientId = 2;
+  Visibility visibility = 3;
 }
 
-message MediaHeaders {
-  bool hlsStatus = 1;
-  string contentType = 3;
-  string clientSecret = 4;
+enum Visibility {
+  PRIVATE = 0;
+  PUBLIC = 1;
+  PROTECTED = 2;
 }
-message MediaUploadRequest {
+message MediaHeaders {
+  string extension = 1;
+  string clientSecret = 2;
+  Visibility visibility = 3;
+}
+message FileUploadRequest {
   bytes file = 1;
 }
 
@@ -32,19 +38,45 @@ message MediaUploadResponse {
 }
 
 message MediaObjectDetails{
+  string mediaId = 1;
+  string accessUrl = 3;
+  uint64 fileSize = 4;
+  string createdOn = 5;
+  Visibility visibility = 6;
+}
+
+service FileHandlerService {
+  rpc uploadFile (stream FileUploadRequest) returns (MediaUploadResponse) {}
+}
+
+message FileObject{
+  string fileId = 1;
+}
+
+message UpdateVisibilityRequest{
+  string fileId = 1;
+  Visibility visibility = 2;
+}
+
+message FileObjectDetails{
   string fileId = 1;
   string accessUrl = 2;
   uint64 fileSize = 3;
   string createdOn = 4;
-  string contentType = 5;
+  string extension = 5;
+  Visibility visibility = 6;
 }
-
-message EmptyResponse{
+message FileOperationResponse{
   OperationStatus status = 1;
+  optional string responseMessage = 2;
+  optional FileObjectDetails fileObjectDetails = 3;
+}
+message AuthKey{
+  string authKey = 1;
 }
 
-
-service MediaHandlerService {
-  rpc uploadFile (stream MediaUploadRequest) returns (MediaUploadResponse) {}
+service FileManagementService {
+  rpc deleteFile(FileObject) returns (FileOperationResponse) {}
+  rpc changeFileVisibility(UpdateVisibilityRequest) returns (FileOperationResponse) {}
 }
 

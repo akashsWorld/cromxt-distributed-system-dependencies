@@ -1,6 +1,7 @@
 package com.cromxt.common.crombucket.grpc;
 
 
+import com.cromxt.proto.files.AuthKey;
 import com.cromxt.proto.files.MediaDetails;
 import com.cromxt.proto.files.MediaHeaders;
 import io.grpc.Context;
@@ -11,6 +12,7 @@ public class MediaHeadersKey {
 
     public static final HeaderKeyValue<MediaHeaders> MEDIA_META_DATA = new HeaderKeyValue<>("media-metadata", HeaderType.BINARY);
     public static final HeaderKeyValue<MediaDetails> MEDIA_DETAILS = new HeaderKeyValue<>("media-details", HeaderType.BINARY);
+    public static final HeaderKeyValue<AuthKey> AUTH_KEY = new HeaderKeyValue<>("auth-key", HeaderType.BINARY);
 
     /*
         public static final Metadata.Key<byte[]> MEDIA_META_DATA_KEY = Metadata.Key.of(String.format("%s-bin", "media-metadata"), Metadata.BINARY_BYTE_MARSHALLER);
