@@ -8,7 +8,7 @@ import lombok.*;
 @Data
 @Builder
 @ToString
-public class BucketDetailsResponse {
+public class StorageServerAddress {
         String hostName;
         Integer rpcPort;
 }

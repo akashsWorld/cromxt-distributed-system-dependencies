@@ -1,4 +1,4 @@
-package com.cromxt.common.crombucket.kafka;
+package com.cromxt.common.crombucket.systemmanager;
 
 
 import lombok.*;
@@ -8,9 +8,8 @@ import lombok.*;
 @Builder
 @Data
 @ToString
-public class BucketObject {
-    private String bucketId;
+public class StorageServerRequest {
+    private String storageServerId;
     private String hostName;
     private Integer rpcPort;
-    private Integer httpPort;
 }
